@@ -20,12 +20,11 @@ Este projeto tem como objetivo (...)
 
 ## Estrutura do Projeto
 
-1. 23 e 24/01 **Coleta de Dados**: Coleta de dados de cibersegurança de diversas fontes.
-2. 30/01 **Processamento de Dados**: Limpeza e preparação dos dados utilizando a biblioteca Pandas.
-3. 31/01 **Análise de Dados**: Análise exploratória dos dados para identificar padrões e tendências.
-4. 03/02 **Visualização de Dados**: Criação de gráficos e visualizações para melhor compreensão dos dados.
-5. 10/02 **Deploy**: Publicação do projeto no GitHub para acesso e colaboração.
-6. 13/02 (Avaliação de Recuperação)
+1. **Coleta de Dados**: Coleta de dados de cibersegurança de diversas fontes.
+2. **Processamento de Dados**: Limpeza e preparação dos dados utilizando a biblioteca Pandas.
+3. **Análise de Dados**: Análise exploratória dos dados para identificar padrões e tendências.
+4. **Visualização de Dados**: Criação de gráficos e visualizações para melhor compreensão dos dados.
+5. **Deploy**: Publicação do projeto no GitHub para acesso e colaboração.
 
 ## Descrição do Projeto
 (A partir do tema escolhido, informar a situação problema e a base de dados)

@@ -1,0 +1,67 @@
+{
+    "usuarios": {
+        "teste": {
+            "nome_usuario": "Usu\u00e1rio de teste",
+            "email_inst": "teste@unb.br",
+            "telefone": "+5561987654321",
+            "vinculo": "O",
+            "senha": "teste"
+        },
+        "luan": {
+            "nome_usuario": "Luan Moura",
+            "email_inst": "luan@unb.br",
+            "telefone": "+5561987654321",
+            "vinculo": "A",
+            "senha": "luan123"
+        },
+        "lidia": {
+            "nome_usuario": "L\u00eddia Silveira Alves",
+            "email_inst": "lidia@unb.br",
+            "telefone": "+5561987654321",
+            "vinculo": "A",
+            "senha": "lidia123"
+        },
+        "francisco": {
+            "nome_usuario": "Francisco J\u00fanior",
+            "email_inst": "francisco@unb.br",
+            "telefone": "+5561987654321",
+            "vinculo": "A",
+            "senha": "francisco123"
+        },
+        "gabrielle": {
+            "nome_usuario": "Gabrielle Santos",
+            "email_inst": "gabrielle@unb.br",
+            "telefone": "+5561987654321",
+            "vinculo": "A",
+            "senha": "gabrielle123"
+        }
+    },
+    "roupas": {
+        "1": {
+            "id": 1,
+            "descricao": "camiseta regata",
+            "categoria": "PC",
+            "cor": "branca",
+            "tamanho": "M",
+            "genero": "M",
+            "estilo": "CS",
+            "faixa_etaria": "AD",
+            "conservacao": "levemente amarelada",
+            "doador": "teste",
+            "reserva": ""
+        },
+        "2": {
+            "id": 2,
+            "descricao": "sunga",
+            "categoria": "MP",
+            "cor": "bord\u00f4",
+            "tamanho": "M",
+            "genero": "M",
+            "estilo": "SX",
+            "faixa_etaria": "AD",
+            "conservacao": "nova, ganhei e nunca usei.",
+            "doador": "teste",
+            "reserva": ""
+        }
+    }
+}

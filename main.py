@@ -67,7 +67,7 @@ significação de peças do vestuário, diminuindo a geração de lixo.\n
       estufa.
 
 =========================================================================\n''')
-    sair = input('Precine Enter para retornar ao menu principal. ')
+    sair = input('Tecle Enter para retornar ao menu principal. ')
 
 def menu_principal():
     '''Imprime o menu principal na tela.'''
@@ -221,11 +221,11 @@ def cadastrar_usuario(dados):
             }
             salvar_dados(dados)
             print("\nUsuário cadastrado com sucesso!")
-            sair = input("Precine Enter para retornar ao menu principal. ")
+            sair = input("Tecle Enter para retornar ao menu principal. ")
             return
         elif confirmacao == "N":
             print("Cadastro cancelado.")
-            sair = input("Precine Enter para retornar ao menu principal.\n")
+            sair = input("Tecle Enter para retornar ao menu principal.\n")
             return
         else:
             print("Opção inválida. Tente novamente.")
@@ -247,7 +247,7 @@ def editar_usuario(dados, usuario):
         confirmacao = input("Você realmente deseja iniciar a edição deste cadastro? \nEsta ação será irreversível (S - Sim, N - Não): ").upper()
         if confirmacao == "N":
             print("Edição cancelada.")
-            sair = input("Precine Enter para retornar ao menu. ")
+            sair = input("Tecle Enter para retornar ao menu. ")
             return
         elif confirmacao == "S":
             while True:
@@ -301,7 +301,7 @@ def excluir_usuario(dados, usuario):
             del dados["usuarios"][usuario]
             salvar_dados(dados)
             print("\nUsuário excluído com sucesso.")
-            sair = input("Precione Enter para sair do sistema. ")
+            sair = input("Tecle Enter para sair do sistema. ")
             return "S"
         elif confirmacao == "N":
             print("\nOperação cancelada.")
@@ -488,6 +488,7 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
     """Consulta todas as roupas disponíveis para doação, aplicando filtros se o usuário desejar. Exibe um relatório das roupas disponíveis no terminal."""
     roupas = dados.get("roupas", {})
     roupas_disponiveis = []
+
 
     # Pergunta se o usuário deseja aplicar filtros
     while True:

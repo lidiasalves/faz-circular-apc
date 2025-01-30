@@ -144,16 +144,16 @@ def login_usuario(dados):
     usuario = input("Digite o nome do usuário: ")
     if usuario not in dados["usuarios"]:
         print("\nUsuário não encontrado.")
-        sair = input("Precione Enter para retornar ao menu principal. ")
+        sair = input("Tecle Enter para retornar ao menu principal. ")
         return "#"
     senha = input("Digite sua senha: ")
     if dados["usuarios"][usuario]["senha"] == senha:
         print(f'\nLogin efetuado com sucesso! Bem-vindo, {dados["usuarios"][usuario]["nome_usuario"]}.')
-        sair = input("Precione Enter para continuar. ")
+        sair = input("Tecle Enter para continuar. ")
         return usuario
     else:
         print("\nSenha inválida. Caso tenha esquecido sua senha, entre em contato com a equipe do projeto através do email faz_circular@gmail.com.")
-        sair = input("Precione Enter para retornar ao menu principal. ")
+        sair = input("Tecle Enter para retornar ao menu principal. ")
         return "#"
 
 # Função para cadastro de usuários
@@ -282,7 +282,7 @@ def editar_usuario(dados, usuario):
             })
             salvar_dados(dados)
             print("\nCadastro atualizado com sucesso!")
-            sair = input("Precione Enter para retornar ao menu. ")
+            sair = input("Tecle Enter para retornar ao menu. ")
             return
         else:
             print("\nOpção inválida, tente novamente.")
@@ -305,7 +305,7 @@ def excluir_usuario(dados, usuario):
             return "S"
         elif confirmacao == "N":
             print("\nOperação cancelada.")
-            sair = input("Precine Enter para retornar ao menu. ")
+            sair = input("Tecle Enter para retornar ao menu. ")
             return "N"
         else:
             print("\nOpção inválida.")
@@ -496,7 +496,7 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
             break
         else:
             print('Opção inválida.')
-            sair = input('Precione Enter para tentar novamente.')
+            sair = input('Tecle Enter para tentar novamente.')
             continue
     filtros = {}
 
@@ -509,7 +509,7 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
                 break
             else:
                 print('Opção inválida.')
-                sair = input('Precione Enter para tentar novamente.')
+                sair = input('Tecle Enter para tentar novamente.')
                 continue
         while True:
             resposta = input("Deseja filtrar por cor? (S - Sim, N - Não): ").strip().upper()
@@ -519,7 +519,7 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
                 break
             else:
                 print('Opção inválida.')
-                sair = input('Precione Enter para tentar novamente.')
+                sair = input('Tecle Enter para tentar novamente.')
                 continue
         while True:
             resposta = input("Deseja filtrar por tamanho? (S - Sim, N - Não): ").strip().upper()
@@ -529,7 +529,7 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
                 break
             else:
                 print('Opção inválida.')
-                sair = input('Precione Enter para tentar novamente.')
+                sair = input('Tecle Enter para tentar novamente.')
                 continue
         while True:
             resposta = input("Deseja filtrar por gênero? (S - Sim, N - Não): ").strip().upper()
@@ -539,7 +539,7 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
                 break
             else:
                 print('Opção inválida.')
-                sair = input('Precione Enter para tentar novamente.')
+                sair = input('Tecle Enter para tentar novamente.')
                 continue
         while True:
             resposta = input("Deseja filtrar por estilo? (S - Sim, N - Não): ").strip().upper()
@@ -549,7 +549,7 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
                 break
             else:
                 print('Opção inválida.')
-                sair = input('Precione Enter para tentar novamente.')
+                sair = input('Tecle Enter para tentar novamente.')
                 continue
         while True:
             resposta = input("Deseja filtrar por faixa etária? (S - Sim, N - Não): ").strip().upper()
@@ -559,7 +559,7 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
                 break
             else:
                 print('Opção inválida.')
-                sair = input('Precione Enter para tentar novamente.')
+                sair = input('Tecle Enter para tentar novamente.')
                 continue
 
     # Filtra as roupas disponíveis
@@ -592,11 +592,11 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
     else:
         print(" Nenhuma roupa disponível encontrada com os filtros aplicados.\n")
         print("=========================================================================\n")
-        sair = input('Precione Enter para retornar ao menu de controle. ')
+        sair = input('Tecle Enter para retornar ao menu de controle. ')
         return
     print(f' Total de roupas encontradas: {len(roupas_disponiveis)}')
     print(' Para efetuar reservas, anote o ID das peças e use o menu de controle.')
-    sair = input(' Precione Enter para retornar ao menu de controle. ')
+    sair = input(' Tecle Enter para retornar ao menu de controle. ')
     print("\n=========================================================================\n")
 
 
@@ -627,7 +627,7 @@ def main():
             break #Interrompe o loop while True e finaliza o sistema 
         else:
             print("Opção inválida.")
-            sair = input("Precine Enter para retornar ao menu principal. ")
+            sair = input("Tecle Enter para retornar ao menu principal. ")
     
     if usuario != "":
         while True:  
@@ -655,11 +655,11 @@ def main():
                 break
             else:
                 print("Opção inválida.")
-                sair = input("Precine Enter para retornar ao menu. ")
+                sair = input("Tecle Enter para retornar ao menu. ")
 
 
 print("\nSeja bem-vindo ao Projeto Faz_Circular!")
-sair = input('Precione Enter para acessar o menu principal. ')
+sair = input('Tecle Enter para acessar o menu principal. ')
 main()
 print("""
 =========================================================================

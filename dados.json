@@ -62,6 +62,32 @@
             "conservacao": "nova, ganhei e nunca usei.",
             "doador": "teste",
             "reserva": ""
+        },
+        "3": {
+            "id": 3,
+            "descricao": "cal\u00e7a",
+            "categoria": "PB",
+            "cor": "verde",
+            "tamanho": "42",
+            "genero": "F",
+            "estilo": "CS",
+            "faixa_etaria": "AD",
+            "conservacao": "nov\u00edssima",
+            "doador": "luan",
+            "reserva": ""
+        },
+        "4": {
+            "id": 4,
+            "descricao": "camisa polo",
+            "categoria": "PC",
+            "cor": "vermelho",
+            "tamanho": "M",
+            "genero": "M",
+            "estilo": "CS",
+            "faixa_etaria": "AD",
+            "conservacao": "po\u00edda",
+            "doador": "luan",
+            "reserva": ""
         }
     }
 }

@@ -600,6 +600,65 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
     sair = input(' Tecle Enter para retornar ao menu de controle. ')
     print("\n=========================================================================\n")
 
+def reservar_roupa(dados, usuario_logado):
+    """Permite que um usuário reserve uma roupa disponível para doação."""
+    while True:
+        codigo = input("Digite o código da roupa que deseja reservar: ")
+        
+        if codigo not in dados["roupas"]:
+            print("Código inválido.")
+            sair = input('Tecle Enter para retornar ao menu de controle. ')
+            return
+        
+        roupa = dados["roupas"][codigo]
+        
+        if roupa["doador"] == usuario_logado:
+            print("Esta roupa foi cadastrada por você. Logo, não é possível reservá-la.")
+            sair = input('Tecle Enter para retornar ao menu de controle. ')
+            return
+        elif roupa["reserva"] != "":
+            print("Esta roupa já está reservada.")
+            sair = input('Tecle Enter para retornar ao menu de controle. ')
+            return
+        else:
+            print("\n=================================================================")
+            print(f"  ID: {roupa['id']}")
+            print(f"  Descrição: {roupa['descricao']}")
+            print(f"  Categoria: {roupa['categoria']}")
+            print(f"  Cor: {roupa['cor']}")
+            print(f"  Tamanho: {roupa['tamanho']}")
+            print(f"  Gênero: {roupa['genero']}")
+            print(f"  Estilo: {roupa['estilo']}")
+            print(f"  Faixa Etária: {roupa['faixa_etaria']}")
+            print(f"  Conservação: {roupa['conservacao']}")
+            print("=================================================================\n")
+            
+            while True:
+                confirmar = input("Deseja reservar esta roupa? (S - Sim, N - Não): ").strip().upper()
+                if confirmar == "S":
+                    roupa["reserva"] = usuario_logado
+                    salvar_dados(dados)
+                    doador = dados["usuarios"][roupa["doador"]]
+                    print(f"\nO(a) doador(a) {doador['nome_usuario']} será informado do seu interesse.")
+                    print(f"Entre em contato com ele(a) através do e-mail {doador['email_inst']} ou do telefone {doador['telefone']}.")
+                    break
+                elif confirmar == "N":
+                    print('Reserva cancelada. ')
+                    sair = input('Tecle Enter para retornar ao menu de controle. ')
+                    return
+                else:
+                    print('Opção inválida. Tente Novamente.')
+
+            
+        while True:
+            repetir = input("Deseja reservar outra roupa? (S - Sim, N - Não): ").strip().upper()
+            if repetir == "N":
+                sair = input('Tecle Enter para retornar ao menu de controle. ')
+                return
+            elif repetir == "S":
+                break
+            else:
+                print('Opção inválida. Tente Novamente.')
 
 # Esta é a função principal do sistema, ela chamará todas as outras funções.
 def main():
@@ -644,7 +703,7 @@ def main():
             elif opcao == "4":
                 consultar_roupas_disponiveis(dados, usuario)
             elif opcao == "5":
-                print("Desenvolver o código.")
+                reservar_roupa(dados, usuario)
             elif opcao == "6":
                 editar_usuario(dados, usuario)
             elif opcao == "7":

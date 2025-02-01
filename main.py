@@ -97,7 +97,7 @@ def menu_controle():
 
     1. Cadastre uma roupa para doação.
     2. Consulte usuários interessados em receber suas roupas cadastradas.
-    3. Edite o cadastro das roupas que você pôs para doação.
+    3. Gerencie as roupas que você pôs para doação.
     4. Procure por roupas que estejam em doação.
     5. Reserve roupas que estejam em doação.
     6. Edite o seu cadastro.
@@ -238,16 +238,17 @@ def editar_usuario(dados, usuario):
 =========================================================================\n""")
     
     print("Informações atuais do usuário\n")
-    print(f'    Nome do usuário: {dados["usuarios"][usuario]["nome_usuario"]}')
-    print(f'    E-mail institucional: {dados["usuarios"][usuario]["email_inst"]}')
-    print(f'    Telefone: {dados["usuarios"][usuario]["telefone"]}')
-    print(f'    Código do vínculo: {dados["usuarios"][usuario]["vinculo"]}\n')
+    print(f'Nome do usuário: {dados["usuarios"][usuario]["nome_usuario"]}')
+    print(f'E-mail institucional: {dados["usuarios"][usuario]["email_inst"]}')
+    print(f'Telefone: {dados["usuarios"][usuario]["telefone"]}')
+    print(f'Vínculo: {dados["legenda"]["vinculo"][dados["usuarios"][usuario]["vinculo"]]}')
+    print('\n-------------------------------------------------------------------------\n')
 
     while True:
         confirmacao = input("Você realmente deseja iniciar a edição deste cadastro? \nEsta ação será irreversível (S - Sim, N - Não): ").upper()
         if confirmacao == "N":
             print("Edição cancelada.")
-            sair = input("Tecle Enter para retornar ao menu. ")
+            sair = input("Tecle Enter para retornar ao menu de controle. ")
             return
         elif confirmacao == "S":
             while True:
@@ -446,6 +447,271 @@ def validar_conservacao():
             return conservacao
         print("Você excedeu o limite de 50 caracteres. Tente novamente.")
 
+def gestao_roupas(dados, usuario_logado):
+    '''Exibe o menu de gerenciamento das roupas cadastradas pelo usuário logado.'''
+
+    print('\n=========================================================================\n')
+    print("    Selecione uma das opções:\n")
+    print("    C - Consultar roupas reservadas")
+    print("    R - Remover reserva de uma roupa")
+    print("    E - Editar o cadastro de uma roupa")
+    print("    D - Deletar uma roupa cadastrada")
+    print(f"    T - Consultar todas as roupas cadastradas por {usuario_logado}")
+    print("    X - Cancelar operação")
+    print('\n=========================================================================\n')
+    
+    while True:
+        opcao = input("Digite sua opção: ").upper()
+        
+        if opcao == "C":
+            consultar_roupas_reservadas(dados, usuario_logado)
+            return
+        elif opcao == "R":
+            remover_reserva_roupa(dados, usuario_logado)
+            return
+        elif opcao == "E":
+            editar_roupa(dados, usuario_logado)
+            return
+        elif opcao == "D":
+            deletar_roupa(dados, usuario_logado)
+            return
+        elif opcao == "T":
+            consultar_roupas_usuario(dados, usuario_logado)
+            return
+        elif opcao == "X":
+            print("Operação cancelada.")
+            sair = input('Tecle Enter para retornar ao menu de controle. ')
+            return
+        else:
+            print("Opção inválida. Tente novamente.")
+            continue
+
+def consultar_roupas_reservadas(dados, usuario_logado):
+    '''Gera uma relação das roupas reservadas.'''
+    
+    # ATENÇÃO: esta é uma sintaxe bastante resumida para criar uma lista de roupas que cadastrada pelo usuário logado e reservas feitas.
+    # 'r for r in dados["roupas"].values()' adicionará os códigos da roupas na lista 'roupas_reservadas'.
+    # 'if r["doador"] == usuario_logado and r["reserva"]' condiciona quais códigos entrarão na lista 'roupas_reservadas'.
+    # 'r["reserva"]' é um a sintaxe resumida para verificar se r["reserva"] é diferente de vazio.
+    roupas_reservadas = [r for r in dados["roupas"].values() if r["doador"] == usuario_logado and r["reserva"]]
+        
+    if not roupas_reservadas:
+        print("Nenhuma roupa reservada.")
+        sair = input('Tecle Enter para retornar ao menu de controle.')
+        return
+    
+    print("\n=========================================================================")
+    print(" RELAÇÃO DE ROUPAS RESERVADAS")
+    print("=========================================================================\n")
+
+    for roupa in roupas_reservadas:
+        print(f"           ID: {roupa['id']}")
+        print(f"    Descrição: {roupa['descricao']}")
+        print(f"    Categoria: {dados["legenda"]["categoria"][roupa['categoria']]}")
+        print(f"          Cor: {roupa['cor']}")
+        print(f"      Tamanho: {roupa['tamanho']}")
+        print(f"       Gênero: {dados["legenda"]["genero"][roupa['genero']]}")
+        print(f"       Estilo: {dados["legenda"]["estilo"][roupa['estilo']]}")
+        print(f" Faixa etária: {dados["legenda"]["faixa_etaria"][roupa['faixa_etaria']]}")
+        print(f"  Conservação: {roupa['conservacao']}")
+        print(f"Reservado por: {dados['usuarios'].get(roupa['reserva'], {}).get('nome_usuario', 'Desconhecido')}")
+        print(f"       E-mail: {dados['usuarios'].get(roupa['reserva'], {}).get('email_inst', 'Não informado')}")
+        print(f"     Telefone: {dados['usuarios'].get(roupa['reserva'], {}).get('telefone', 'Não informado')}")
+        print("\n-------------------------------------------------------------------------\n")
+
+    print(f' Total de roupas reservadas: {len(roupas_reservadas)}')
+    print(' ATENÇÃO: Entre em contato com as pessoas interessadas para combinar os detalhes da doação.')
+    sair = input(' Tecle Enter para retornar ao menu de controle. ')
+    print("\n=========================================================================\n")
+
+def remover_reserva_roupa(dados, usuario_logado):
+    '''Remove a reserva de uma roupa, desde que a roupa tenha sido dacastrada pelo usuário logado.'''
+
+    codigo = input("Digite o código da roupa: ")
+    
+    if codigo not in dados["roupas"]:
+        print("Código não localizado.")
+        sair = input('Tecle Enter para retornar ao menu de controle.')
+        return
+    
+    roupa = dados["roupas"][codigo]
+    if roupa["doador"] != usuario_logado:
+        print(f"Você não pode remover a reserva de peças cadastradas por outros usuários.")
+        sair = input('Tecle Enter para retornar ao menu de controle.')
+        return
+    
+    if not roupa["reserva"]:
+        print("Esta roupa não está reservada.")
+        sair = input('Tecle Enter para retornar ao menu de controle.')
+        return
+    
+    print("\n-------------------------------------------------------------------------\n")
+    print('Confira as informações da reserva antes de continuar o cancelamento:\n')
+    print(f"           ID: {roupa['id']}")
+    print(f"    Descrição: {roupa['descricao']}")
+    print(f"    Categoria: {dados["legenda"]["categoria"][roupa['categoria']]}")
+    print(f"          Cor: {roupa['cor']}")
+    print(f"      Tamanho: {roupa['tamanho']}")
+    print(f"       Gênero: {dados["legenda"]["genero"][roupa['genero']]}")
+    print(f"       Estilo: {dados["legenda"]["estilo"][roupa['estilo']]}")
+    print(f" Faixa etária: {dados["legenda"]["faixa_etaria"][roupa['faixa_etaria']]}")
+    print(f"  Conservação: {roupa['conservacao']}")
+    print(f"Reservado por: {dados['usuarios'].get(roupa['reserva'], {}).get('nome_usuario', 'Desconhecido')}")
+    print(f"       E-mail: {dados['usuarios'].get(roupa['reserva'], {}).get('email_inst', 'Não informado')}")
+    print(f"     Telefone: {dados['usuarios'].get(roupa['reserva'], {}).get('telefone', 'Não informado')}")
+    print("\n-------------------------------------------------------------------------\n")
+
+    while True:
+        confirmacao = input("Deseja realmente cancelar a reserva? (S/N): ").upper()
+        if confirmacao == "S":
+            roupa["reserva"] = ""
+            salvar_dados(dados)
+            print("Reserva removida com sucesso.")
+            sair = input('Tecle Enter para retornar ao menu de controle.')
+            return
+        elif confirmacao == "N":
+            print("Operação cancelada.")
+            sair = input('Tecle Enter para retornar ao menu de controle.')
+            return
+        else:
+            print("Opção inválida.")
+            sair = input('Tecle Enter para tentar novamente.')
+            continue
+
+def editar_roupa(dados, usuario_logado):
+    '''Edita o cadastro de uma peça e roupa cadastrada pelo usuário logado.'''
+    
+    codigo = input("Digite o código da roupa: ")
+    
+    if codigo not in dados["roupas"]:
+        print("Código inválido.")
+        sair = input('Tecle Enter para retornar ao menu de controle.')
+        return
+    
+    roupa = dados["roupas"][codigo]
+    if roupa["doador"] != usuario_logado:
+        print("Você não pode editar roupas cadastradas por outros usuários.")
+        sair = input('Tecle Enter para retornar ao menu de controle.')
+        return
+    
+    print("\n-------------------------------------------------------------------------\n")
+    print('Confira as informações da peça cadastrada antes de continuar com a edição:\n')
+    print(f"           ID: {roupa['id']}")
+    print(f"    Descrição: {roupa['descricao']}")
+    print(f"    Categoria: {dados["legenda"]["categoria"][roupa['categoria']]}")
+    print(f"          Cor: {roupa['cor']}")
+    print(f"      Tamanho: {roupa['tamanho']}")
+    print(f"       Gênero: {dados["legenda"]["genero"][roupa['genero']]}")
+    print(f"       Estilo: {dados["legenda"]["estilo"][roupa['estilo']]}")
+    print(f" Faixa etária: {dados["legenda"]["faixa_etaria"][roupa['faixa_etaria']]}")
+    print(f"  Conservação: {roupa['conservacao']}")
+    print("\n-------------------------------------------------------------------------\n")
+    
+    id = str(roupa['id'])
+    while True:
+        confirmacao = input("Você realmente deseja iniciar a edição desta peça? \nEsta ação será irreversível (S - Sim, N - Não): ").upper()
+        if confirmacao == "N":
+            print("Edição cancelada.")
+            sair = input("Tecle Enter para retornar ao menu de controle.")
+            return
+        elif confirmacao == "S":
+            
+            descricao = validar_descricao()
+            categoria = validar_categoria()
+            cor = validar_cor()
+            tamanho = validar_tamanho()
+            genero = validar_genero()
+            estilo = validar_estilo()
+            faixa_etaria = validar_faixa_etaria()
+            conservacao = validar_conservacao()
+
+            #salvar os dados
+            dados["roupas"][id].update({
+                "descricao": descricao, 
+                "categoria": categoria,
+                "cor": cor, 
+                "tamanho": tamanho,
+                "genero": genero,
+                "estilo": estilo,
+                "faixa_etaria": faixa_etaria,
+                "conservacao": conservacao
+            })
+            salvar_dados(dados)
+            print("\nCadastro atualizado com sucesso!")
+            sair = input("Tecle Enter para retornar ao menu de controle. ")
+            return
+        else:
+            print("\nOpção inválida, tente novamente.")
+    
+    #salvar_dados(dados)
+    #print("Roupa editada com sucesso.")
+
+def deletar_roupa(dados, usuario_logado):
+    '''Deleta a peça de vestuário cadastrada pelo usuário logado.'''
+    
+    codigo = input("Digite o código da roupa: ")
+    
+    if codigo not in dados["roupas"]:
+        print("Código inválido.")
+        sair = input('Tecle Enter para retornar ao menu de controle.')
+        return
+    
+    roupa = dados["roupas"][codigo]
+    if roupa["doador"] != usuario_logado:
+        print("Você não pode excluir roupas cadastradas por outros usuários.")
+        sair = input('Tecle Enter para retornar ao menu de controle.')
+        return
+    
+    while True:
+        confirmacao = input("Deseja realmente excluir esta peça? (S/N): ").upper()
+        if confirmacao == "S":
+            del dados["roupas"][codigo]
+            salvar_dados(dados)
+            print("Roupa excluída com sucesso.")
+            sair = input('Tecle Enter para retornar ao menu de controle.')
+            return
+        elif confirmacao == "N":
+            print("Operação cancelada.")
+            sair = input('Tecle Enter para retornar ao menu de controle.')
+            return
+        else:
+            print("Opção inválida.")
+            sair = input('Tecle Enter para tentar novamente.')
+            continue
+
+def consultar_roupas_usuario(dados, usuario_logado):
+    '''Lista todas as roupas cadastradas pelo usuário logado, independentemente da reserva.'''
+
+    roupas_usuario = [r for r in dados["roupas"].values() if r["doador"] == usuario_logado]
+    
+    if not roupas_usuario:
+        print("Nenhuma roupa cadastrada.")
+        sair = input('Tecle Enter para retornar ao menu de controle.')
+        return
+    
+    print("\n=========================================================================")
+    print(f" RELAÇÃO DE ROUPAS CADASTRADAS POR {dados['usuarios'].get(usuario_logado).get('nome_usuario', 'Desconhecido').upper()}")
+    print("=========================================================================\n")
+    
+    for roupa in roupas_usuario:
+
+        print(f"           ID: {roupa['id']}")
+        print(f"    Descrição: {roupa['descricao']}")
+        print(f"    Categoria: {dados["legenda"]["categoria"][roupa['categoria']]}")
+        print(f"          Cor: {roupa['cor']}")
+        print(f"      Tamanho: {roupa['tamanho']}")
+        print(f"       Gênero: {dados["legenda"]["genero"][roupa['genero']]}")
+        print(f"       Estilo: {dados["legenda"]["estilo"][roupa['estilo']]}")
+        print(f" Faixa etária: {dados["legenda"]["faixa_etaria"][roupa['faixa_etaria']]}")
+        print(f"  Conservação: {roupa['conservacao']}")
+        if roupa['reserva'] != "":
+            print(f"Reservado por: {dados['usuarios'].get(roupa['reserva'], {}).get('nome_usuario', 'Desconhecido')}")
+            print(f"       E-mail: {dados['usuarios'].get(roupa['reserva'], {}).get('email_inst', 'Não informado')}")
+            print(f"     Telefone: {dados['usuarios'].get(roupa['reserva'], {}).get('telefone', 'Não informado')}")
+        print("\n-------------------------------------------------------------------------\n")
+
+    print(f' Total de roupas reservadas: {len(roupas_usuario)}')
+    sair = input(' Tecle Enter para retornar ao menu de controle.\n')
 
 # Funão para cadastrar a ropas no arquivo json.
 def cadastrar_roupa(dados, usuario_logado):
@@ -582,12 +848,12 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
         for roupa in roupas_disponiveis:
             print(f"           ID: {roupa['id']}")
             print(f"    Descrição: {roupa['descricao']}")
-            print(f"    Categoria: {roupa['categoria']}")
+            print(f"    Categoria: {dados["legenda"]["categoria"][roupa['categoria']]}")
             print(f"          Cor: {roupa['cor']}")
             print(f"      Tamanho: {roupa['tamanho']}")
-            print(f"       Gênero: {roupa['genero']}")
-            print(f"       Estilo: {roupa['estilo']}")
-            print(f" Faixa etária: {roupa['faixa_etaria']}")
+            print(f"       Gênero: {dados["legenda"]["genero"][roupa['genero']]}")
+            print(f"       Estilo: {dados["legenda"]["estilo"][roupa['estilo']]}")
+            print(f" Faixa etária: {dados["legenda"]["faixa_etaria"][roupa['faixa_etaria']]}")
             print(f"  Conservação: {roupa['conservacao']}")
             print("\n-------------------------------------------------------------------------\n")
     else:
@@ -622,15 +888,15 @@ def reservar_roupa(dados, usuario_logado):
             return
         else:
             print("\n=================================================================")
-            print(f"  ID: {roupa['id']}")
-            print(f"  Descrição: {roupa['descricao']}")
-            print(f"  Categoria: {roupa['categoria']}")
-            print(f"  Cor: {roupa['cor']}")
-            print(f"  Tamanho: {roupa['tamanho']}")
-            print(f"  Gênero: {roupa['genero']}")
-            print(f"  Estilo: {roupa['estilo']}")
-            print(f"  Faixa Etária: {roupa['faixa_etaria']}")
-            print(f"  Conservação: {roupa['conservacao']}")
+            print(f"            ID: {roupa['id']}")
+            print(f"     Descrição: {roupa['descricao']}")
+            print(f"     Categoria: {dados["legenda"]["categoria"][roupa['categoria']]}")
+            print(f"           Cor: {roupa['cor']}")
+            print(f"       Tamanho: {roupa['tamanho']}")
+            print(f"        Gênero: {dados["legenda"]["genero"][roupa['genero']]}")
+            print(f"        Estilo: {dados["legenda"]["estilo"][roupa['estilo']]}")
+            print(f"  Faixa Etária: {dados["legenda"]["faixa_etaria"][roupa['faixa_etaria']]}")
+            print(f"   Conservação: {roupa['conservacao']}")
             print("=================================================================\n")
             
             while True:
@@ -662,6 +928,7 @@ def reservar_roupa(dados, usuario_logado):
 
 # Esta é a função principal do sistema, ela chamará todas as outras funções.
 def main():
+    '''Executa o programa.'''
     dados = carregar_dados()
 
     # Faz a gestão das opções do menu principal.
@@ -697,9 +964,9 @@ def main():
             if opcao == "1":
                 cadastrar_roupa(dados, usuario)
             elif opcao == "2":
-                print("Desenvolver o código.")
+                consultar_roupas_reservadas(dados, usuario)
             elif opcao == "3":
-                print("Desenvolver o código.")
+                gestao_roupas(dados, usuario)
             elif opcao == "4":
                 consultar_roupas_disponiveis(dados, usuario)
             elif opcao == "5":
@@ -718,11 +985,15 @@ def main():
                 sair = input("Tecle Enter para retornar ao menu. ")
 
 
-print("\nSeja bem-vindo ao Projeto Faz_Circular!")
-sair = input('Tecle Enter para acessar o menu principal. ')
+print('''
+=========================================================================
+                 SEJA BEM-VINDO AO PROJETO FAZ_CIRCULAR!
+=========================================================================
+''')
+sair = input('Tecle Enter para acessar o menu principal.')
 main()
 print("""
 =========================================================================
-    Obrigado pela visita ao Projeto Faz_Circular. Até breve!
+        OBRIGADO PELA VISITA AO PROJETO FAZ_CIRCULAR. ATÉ BREVE!
 =========================================================================
 """)

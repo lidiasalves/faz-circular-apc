@@ -1,4 +1,46 @@
 {
+    "legenda": {
+        "vinculo":{
+            "P": "Professor",
+            "A": "Aluno",
+            "F": "Funcionário",
+            "O": "Outro"
+        },
+        "categoria":{
+            "PC": "Parte de Cima",
+            "PB": "Parte de Baixo",
+            "CI": "Corpo Inteiro",
+            "MP": "Moda Praia",
+            "PJ": "Pijamas",
+            "AC": "Acessórios",
+            "RF": "Roupas de Frio",
+            "RE": "Roupas Esportivas"
+        },
+        "genero":{
+            "F": "Feminino",
+            "M": "Masculino",
+            "A": "Ambos",
+            "S": "Sem gênero"
+        },
+        "estilo":{
+            "CS": "Casual",
+            "ST": "Street",
+            "RM": "Romântico",
+            "CL": "Clássico",
+            "SX": "Sexy",
+            "HP": "Hippie",
+            "GR": "Grunge",
+            "VT": "Vintage",
+            "RK": "Rock & Punk",
+            "GK": "Geek"
+        },
+        "faixa_etaria":{
+            "BB": "Bebê",
+            "CR": "Criança",
+            "TN": "Adolescente",
+            "AD": "Adulto"
+        }
+    },
     "usuarios": {
         "teste": {
             "nome_usuario": "Usu\u00e1rio de teste",
@@ -74,7 +116,7 @@
             "faixa_etaria": "AD",
             "conservacao": "nov\u00edssima",
             "doador": "luan",
-            "reserva": "teste"
+            "reserva": ""
         },
         "4": {
             "id": 4,
@@ -6175,14 +6217,14 @@
         },
         "473": {
             "id": 473,
-            "descricao": "short",
-            "categoria": "MP",
-            "cor": "preto",
-            "tamanho": "42",
-            "genero": "S",
-            "estilo": "RK",
-            "faixa_etaria": "BB",
-            "conservacao": "bem conservada",
+            "descricao": "bermuda",
+            "categoria": "PB",
+            "cor": "azul",
+            "tamanho": "GG",
+            "genero": "M",
+            "estilo": "VT",
+            "faixa_etaria": "AD",
+            "conservacao": "pouco po\u00edda",
             "doador": "luan",
             "reserva": ""
         },

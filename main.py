@@ -321,7 +321,7 @@ def excluir_usuario(dados, usuario):
 
             # deleta as roupas cadastradas
             dados["roupas"] = {
-                chave: valor for chave, valor in dados["roupas"].items() if valor.get("doador") != usuario
+                chave: valor for chave, valor in dados["roupas"].items() if valor.get("doador") != usuario # esta linha faz uma filtragem no dicionário, mantendo apenas aquilo que interessa.
             }
 
             # deleta o usuário            
@@ -532,6 +532,9 @@ def consultar_roupas_reservadas(dados, usuario_logado):
     print(" RELAÇÃO DE ROUPAS RESERVADAS")
     print("=========================================================================\n")
 
+    # Embaralha o dicionário de roupas
+    random.shuffle(roupas_reservadas)
+    
     for roupa in roupas_reservadas:
         print(f"           ID: {roupa['id']}")
         print(f"    Descrição: {roupa['descricao']}")
@@ -721,6 +724,9 @@ def consultar_roupas_usuario(dados, usuario_logado):
     print(f" RELAÇÃO DE ROUPAS CADASTRADAS POR {dados['usuarios'].get(usuario_logado).get('nome_usuario', 'Desconhecido').upper()}")
     print("=========================================================================\n")
     
+    # Embaralha o dicionário de roupas 
+    random.shuffle(roupas_usuario)
+
     for roupa in roupas_usuario:
 
         print(f"           ID: {roupa['id']}")
@@ -871,7 +877,7 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
             if atende_filtros:
                 roupas_disponiveis.append(roupa)
 
-    # Embaralha a lista de roupas
+    # Embaralha o dicionário de roupas
     random.shuffle(roupas_disponiveis)
 
     # Exibe o relatório no terminal

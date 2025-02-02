@@ -106,6 +106,19 @@ def menu_controle():
 
 =========================================================================""")
 
+def msg_recuperacao_senha():
+    print("""
+=========================================================================
+                                ATENÇÃO
+=========================================================================
+
+Para recuperar o seu usuário ou senha entre em contato com a equipe do 
+projeto através do e-mail faz.circular@unb.br e solicite a recuperação.
+Aguardaremos o seu contato.
+
+=========================================================================
+""")
+
 # Função para validar entrada de nome de usuário
 def validar_usuario(usuario):
     for char in usuario:
@@ -237,11 +250,11 @@ def editar_usuario(dados, usuario):
     Editar Cadastro de Usuário
 =========================================================================\n""")
     
-    print("Informações atuais do usuário\n")
-    print(f'Nome do usuário: {dados["usuarios"][usuario]["nome_usuario"]}')
-    print(f'E-mail institucional: {dados["usuarios"][usuario]["email_inst"]}')
-    print(f'Telefone: {dados["usuarios"][usuario]["telefone"]}')
-    print(f'Vínculo: {dados["legenda"]["vinculo"][dados["usuarios"][usuario]["vinculo"]]}')
+    print("    Informações atuais do usuário\n")
+    print(f'         Nome do usuário: {dados["usuarios"][usuario]["nome_usuario"]}')
+    print(f'    E-mail institucional: {dados["usuarios"][usuario]["email_inst"]}')
+    print(f'                Telefone: {dados["usuarios"][usuario]["telefone"]}')
+    print(f'                 Vínculo: {dados["legenda"]["vinculo"][dados["usuarios"][usuario]["vinculo"]]}')
     print('\n-------------------------------------------------------------------------\n')
 
     while True:
@@ -283,7 +296,7 @@ def editar_usuario(dados, usuario):
             })
             salvar_dados(dados)
             print("\nCadastro atualizado com sucesso!")
-            sair = input("Tecle Enter para retornar ao menu. ")
+            sair = input("Tecle Enter para retornar ao menu de controle. ")
             return
         else:
             print("\nOpção inválida, tente novamente.")
@@ -291,15 +304,30 @@ def editar_usuario(dados, usuario):
 
 # Função para excluir o usuário logado.
 def excluir_usuario(dados, usuario):
+    '''Exclui o usuário logado, as peças por ele cadastradas e as reservas por ele realizadas.'''
     print("""
 =========================================================================
     Exclusão de Usuário
 =========================================================================""")
     
     while True:
-        confirmacao = input(f"\nTem certeza que deseja excluir o usuário '{usuario}'? \nEssa ação é irreversível. (S - Sim, N - Não): ").upper()
+        confirmacao = input(f"\nATENÇÃO: Tem certeza que deseja excluir o usuário '{usuario}'? \nEssa ação é irreversível e também apagará as roupas cadastradas e as \nreservas realizadas. (S - Sim, N - Não): ").upper()
         if confirmacao == "S":
+            
+            # cancela as reservas
+            for chaave, valor in dados["roupas"].items():
+                if valor.get("reserva") == usuario:
+                    valor["reserva"] = ""
+
+            # deleta as roupas cadastradas
+            dados["roupas"] = {
+                chave: valor for chave, valor in dados["roupas"].items() if valor.get("doador") != usuario
+            }
+
+            # deleta o usuário            
             del dados["usuarios"][usuario]
+            
+            # salva as alterações no arquivo json
             salvar_dados(dados)
             print("\nUsuário excluído com sucesso.")
             sair = input("Tecle Enter para sair do sistema. ")
@@ -562,7 +590,7 @@ def remover_reserva_roupa(dados, usuario_logado):
     print("\n-------------------------------------------------------------------------\n")
 
     while True:
-        confirmacao = input("Deseja realmente cancelar a reserva? (S/N): ").upper()
+        confirmacao = input("Deseja realmente cancelar a reserva? (S - Sim, N - Não): ").upper()
         if confirmacao == "S":
             roupa["reserva"] = ""
             salvar_dados(dados)
@@ -663,7 +691,7 @@ def deletar_roupa(dados, usuario_logado):
         return
     
     while True:
-        confirmacao = input("Deseja realmente excluir esta peça? (S/N): ").upper()
+        confirmacao = input("Deseja realmente excluir esta peça? (S - Sim, N - Não): ").upper()
         if confirmacao == "S":
             del dados["roupas"][codigo]
             salvar_dados(dados)
@@ -733,7 +761,7 @@ def cadastrar_roupa(dados, usuario_logado):
     }
 
     while True:
-        confirmacao = input("Você confirma o cadastro desta peça de roupa? S - Sim, N - Não: ").upper()
+        confirmacao = input("Você confirma o cadastro desta peça de roupa? (S - Sim, N - Não): ").upper()
         if confirmacao == "S":
             roupas[nova_roupa["id"]] = nova_roupa
             dados["roupas"] = roupas
@@ -741,7 +769,7 @@ def cadastrar_roupa(dados, usuario_logado):
             print("Roupa cadastrada com sucesso!")
             break
         elif confirmacao == "N":
-            cancelar = input("Tem certeza que deseja cancelar o cadastro? S - Sim, C - Continuar: ").upper()
+            cancelar = input("Tem certeza que deseja cancelar o cadastro? (S - Sim, C - Continuar): ").upper()
             if cancelar == "S":
                 print("Cadastro cancelado.")
                 break
@@ -772,6 +800,7 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
             resposta = input("Deseja filtrar por categoria? (S - Sim, N - Não): ").strip().upper()
             if resposta == "S":
                 filtros["categoria"] = validar_categoria()
+                break
             elif resposta == "N":
                 break
             else:
@@ -782,6 +811,7 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
             resposta = input("Deseja filtrar por cor? (S - Sim, N - Não): ").strip().upper()
             if resposta == "S":
                 filtros["cor"] = validar_cor()
+                break
             elif resposta == "N":
                 break
             else:
@@ -792,6 +822,7 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
             resposta = input("Deseja filtrar por tamanho? (S - Sim, N - Não): ").strip().upper()
             if resposta == "S":
                 filtros["tamanho"] = validar_tamanho()
+                break
             elif resposta == "N":
                 break
             else:
@@ -802,6 +833,7 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
             resposta = input("Deseja filtrar por gênero? (S - Sim, N - Não): ").strip().upper()
             if resposta == "S":
                 filtros["genero"] = validar_genero()
+                break
             elif resposta == "N":
                 break
             else:
@@ -812,6 +844,7 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
             resposta = input("Deseja filtrar por estilo? (S - Sim, N - Não): ").strip().upper()
             if resposta == "S":
                 filtros["estilo"] = validar_estilo()
+                break
             elif resposta == "N":
                 break
             else:
@@ -822,6 +855,7 @@ def consultar_roupas_disponiveis(dados, usuario_logado):
             resposta = input("Deseja filtrar por faixa etária? (S - Sim, N - Não): ").strip().upper()
             if resposta == "S":
                 filtros["faixa_etaria"] = validar_faixa_etaria()
+                break
             elif resposta == "N":
                 break
             else:
@@ -948,7 +982,7 @@ def main():
         elif opcao == "3":
             cadastrar_usuario(dados)
         elif opcao == "4":
-            print("\nPara recuperar o seu usuário ou senha entre em contato com a equipe do projeto através do e-mail faz.circular@gmail.com. Aguardaremos o seu contato.")
+            msg_recuperacao_senha()
             sair = input("Precione Enter para retornar ao menu principal.\n")
         elif opcao == "5":
             break #Interrompe o loop while True e finaliza o sistema 

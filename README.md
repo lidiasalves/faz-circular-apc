@@ -22,15 +22,15 @@ quem quer doar com quem quer receber roupas em condições de uso. A ideia
 do projeto é promover a redução do impacto ambiental para incentivar a res-
 significação de peças do vestuário, diminuindo a geração de lixo.
 
-*Como amenizar o descarte inadequado de vestuário usado?
+**Como amenizar o descarte inadequado de vestuário usado?**
 
-*Como fazer com que pessoas se conectem em prol de uma ação sustentável?
+**Como fazer com que pessoas se conectem em prol de uma ação sustentável?**
 
 ## Tecnologias Utilizadas
 
 - **Linguagem**: Python
 - **Bibliotecas**: (...)
-- **Deploy**: GitHub ou um site do projeto
+- **Deploy**: GitHub
 
 ## Estrutura do Projeto
 

@@ -3,7 +3,7 @@
         "vinculo": {
             "P": "Professor",
             "A": "Aluno",
-            "F": "Funcion\u00c3\u00a1rio",
+            "F": "Funcion\u00e1rio",
             "O": "Outro"
         },
         "categoria": {
@@ -12,7 +12,7 @@
             "CI": "Corpo Inteiro",
             "MP": "Moda Praia",
             "PJ": "Pijamas",
-            "AC": "Acess\u00c3\u00b3rios",
+            "AC": "Acess\u00f3rios",
             "RF": "Roupas de Frio",
             "RE": "Roupas Esportivas"
         },
@@ -20,13 +20,13 @@
             "F": "Feminino",
             "M": "Masculino",
             "A": "Ambos",
-            "S": "Sem g\u00c3\u00aanero"
+            "S": "Sem g\u00eanero"
         },
         "estilo": {
             "CS": "Casual",
             "ST": "Street",
-            "RM": "Rom\u00c3\u00a2ntico",
-            "CL": "Cl\u00c3\u00a1ssico",
+            "RM": "Rom\u00e2ntico",
+            "CL": "Cl\u00e1ssico",
             "SX": "Sexy",
             "HP": "Hippie",
             "GR": "Grunge",
@@ -35,8 +35,8 @@
             "GK": "Geek"
         },
         "faixa_etaria": {
-            "BB": "Beb\u00c3\u00aa",
-            "CR": "Crian\u00c3\u00a7a",
+            "BB": "Beb\u00ea",
+            "CR": "Crian\u00e7a",
             "TN": "Adolescente",
             "AD": "Adulto"
         }
@@ -162,7 +162,7 @@
             "faixa_etaria": "CR",
             "conservacao": "nova",
             "doador": "teste",
-            "reserva": "luan"
+            "reserva": ""
         },
         "7": {
             "id": 7,
@@ -6648,6 +6648,19 @@
             "estilo": "CS",
             "faixa_etaria": "AD",
             "conservacao": "debotada",
+            "doador": "vanessa",
+            "reserva": ""
+        },
+        "506": {
+            "id": 506,
+            "descricao": "cal\u00e7a jeans",
+            "categoria": "PB",
+            "cor": "azul-petr\u00f3leo",
+            "tamanho": "M",
+            "genero": "S",
+            "estilo": "ST",
+            "faixa_etaria": "TN",
+            "conservacao": "debotada e rasgada no fundo.",
             "doador": "vanessa",
             "reserva": ""
         }

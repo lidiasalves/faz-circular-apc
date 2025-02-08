@@ -130,7 +130,7 @@ def validar_usuario(usuario):
 
 # Função para validar nome completo
 def validar_nome(nome):
-    return len(nome.split()) >= 2
+    return len(nome.split()) >= 2 and nome.replace(" ","").isalpha()
 
 # Função para validar e-mail institucional
 def validar_email(email):
@@ -553,7 +553,7 @@ def consultar_roupas_reservadas(dados, usuario_logado):
         print("\n-------------------------------------------------------------------------\n")
 
     print(f' Total de roupas reservadas: {len(roupas_reservadas)}')
-    print(' ATENÇÃO: Entre em contato com as pessoas interessadas para combinar os detalhes da doação.')
+    print(' ATENÇÃO: Entre em contato com as pessoas interessadas para combinar os \ndetalhes da doação.')
     sair = input(' Tecle Enter para retornar ao menu de controle. ')
     print("\n=========================================================================\n")
 

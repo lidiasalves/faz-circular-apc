@@ -3,24 +3,11 @@ Título:
 
 ## Descrição do Projeto
 
-  O projeto Faz_Circular propõe a ideia de promover sustentabilidade e 
-reutilização de roupas dentro do ciclo universitário, conectando a comu-
-nidade acadêmica para doações de peças do vestuário que ainda estejam em 
-condições de uso e sejam úteis a outras pessoas.
-  O descarte inadequado de peças de vestuário no meio ambiente repre-
-senta está entre os grandes desafios ambientais da atualidade. A maior 
-parte das roupas descartadas acaba em aterros sanitários, lixões ou em 
-locais inapropriados, onde podem levar décadas para se decompor, liberando
-substâncias químicas nocivas ao solo e à água. No início da cadeia produ-
-tiva têxtil, a produção exerce impacto ambiental substancial, consumindo 
-vastas quantidades de recursos naturais, como água e energia, além de ge-
-rar emissões de gases de efeito estufa e poluir rios ou lençóis freáticos 
-com resíduos químicos provenientes do tingimento e tratamento dos tecidos.
-  Nesse contexto, surge o projeto Faz_Circular, uma plataforma para 
-estudantes, professores e trabalhadores da nossa universidade que conecta 
-quem quer doar com quem quer receber roupas em condições de uso. A ideia 
-do projeto é promover a redução do impacto ambiental para incentivar a res-
-significação de peças do vestuário, diminuindo a geração de lixo.
+  O projeto Faz_Circular propõe a ideia de promover sustentabilidade e reutilização de roupas dentro do ciclo universitário, conectando a comunidade acadêmica para doações de peças do vestuário que ainda estejam em condições de uso e sejam úteis a outras pessoas.
+
+  O descarte inadequado de peças de vestuário no meio ambiente está entre os grandes desafios ambientais da atualidade. A maior parte das roupas descartadas acaba em aterros sanitários, lixões ou em locais inapropriados, onde podem levar décadas para se decompor, liberando substâncias químicas nocivas ao solo e à água. No início da cadeia produtiva têxtil, a produção exerce impacto ambiental substancial, consumindo vastas quantidades de recursos naturais, como água e energia, além de gerar emissões de gases de efeito estufa e poluir rios ou lençóis freáticos com resíduos químicos provenientes do tingimento e tratamento dos tecidos.
+
+  Nesse contexto, surge o projeto Faz_Circular, uma plataforma para estudantes, professores e trabalhadores da nossa universidade que conecta quem quer doar com quem quer receber roupas em condições de uso. A ideia do projeto é promover a redução do impacto ambiental para incentivar a ressignificação de peças do vestuário, diminuindo a geração de lixo.
 
 **Como amenizar o descarte inadequado de vestuário usado?**
 
@@ -29,10 +16,19 @@ significação de peças do vestuário, diminuindo a geração de lixo.
 ## Tecnologias Utilizadas
 
 - **Linguagem**: Python
-- **Bibliotecas**: (...)
+- **Armagenamento dos dados**: JSON
+- **Bibliotecas**: random (para aleatorizar as buscas)
 - **Deploy**: GitHub
 
-## Estrutura do Projeto
+## Como executar o Projeto Faz_Circular
+
+1. Certifique-se de ter o Phyton 3.x instalado.
+2. Clone o repositório ou baixe os arquivos.
+3. Execute o script principal: `main.py`
+4. Siga as instruções do menu principal e do menu de controle para integarir com o sistema.
+
+## Funcionalidades
+
 
 1. **Coleta de Dados**: Coleta de dados pessoais e usuários.
 2. **Armazenamento de Dados**: Dados armazenados em banco.

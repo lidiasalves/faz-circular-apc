@@ -13,7 +13,7 @@ Título:
 ## Tecnologias Utilizadas
 
 - **Linguagem**: Python 3
-- **Armazenamento dos dados**: em arquivos JSON, organizado internamente em três bibliotacas:
+- **Armazenamento dos dados**: em arquivos JSON, organizado internamente em três bibliotecas:
   - `legenda`: armazena os códigos utilizados no cadastramento de usuários e de roupas como chaves e os significados como valores.
   - `usuarios`: armazena os nomes dos usuários cadastrados como chaves e as informações dos usuários (nome completo, e-mail institucional, telefone, tipo do vínculo e senha) como valores em uma biblioteca aninhada.
   - `roupas`: armazena os IDs das roupas cadastradas por usuários logados como chaves e as informações da roupa (ID, descrição, categoria, cor, tamanho, gênero, estilo, faixa etária, conservação, doador e reserva) como valores em uma biblioteca aninhada.

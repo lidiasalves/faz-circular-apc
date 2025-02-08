@@ -13,7 +13,10 @@ Título:
 ## Tecnologias Utilizadas
 
 - **Linguagem**: Python 3
-- **Armazenamento dos dados**: JSON
+- **Armazenamento dos dados**: em arquivos JSON, organizado internamente em três bibliotacas:
+  - `legenda`: armazena os códigos utilizados no cadastramento de usuários e de roupas como chaves e os significados como valores.
+  - `usuarios`: armazena os IDs dos usuários cadastrados como chave e as informações 
+  - `roupas`:
 - **Bibliotecas**: 
   - `random` (para tornar aleatório os itens exibidos nos relatórios)
   - `json` (para criar, ler e editar arquivos JSON).
@@ -136,7 +139,9 @@ Entre as funcionalidades do Menu de Controle estão:
 
 6. **Editar o cadastro**: o sistema abre o cadastro do usuário logado para que ele realiza atualizações cadastrais. Antes de iniciar a edição, o sistema pergunta se o usuário logado realmente deseja inicia a edição, sendo possível apenas as respostas `S` (Sim) ou `N` (Não). Caso o usuário digite algo diferente, a pergunta é repetida. Caso o usuário informe `N`, a operação é cancelada e o usuário redirecionado ao Menu de Controle. Caso a resposta seja `S`, a edição é iniciada. A edição do cadastro de usuário permite alterar o nome completo do usuário, o e-mail institucional, o telefone para contato e o tipo de vínculo com a Universidade de Brasília. Não é possível alterar o nome de login do usuário. Para cada campo editado, as regras de validação são as mesmas aplicadas para o cadastro de usuário. Após a atualização cadastral o usuário logado é redirecionado para o Menu de Controle.
 
-7. **Sair do sistema**: o usuário logado sair do sistema. É exibida uma mensagem de despedida, encerrando a execução do script `main.py`.
+7. **Exclusão de cadastro**: o sistema fará a exclusão do cadastro do usuário. Está é uma operação irreversível. O sistema também excluirá todas as peças de roupa cadastradas pelo mesmo usuário logado e retirará a reserva de peças feitas pelo usuário logado.
+
+8. **Sair do sistema**: o usuário logado sair do sistema. É exibida uma mensagem de despedida, encerrando a execução do script `main.py`.
 
 ## Contribuições
 

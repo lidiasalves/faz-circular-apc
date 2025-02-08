@@ -121,6 +121,8 @@ Aguardaremos o seu contato.
 
 # Função para validar entrada de nome de usuário
 def validar_usuario(usuario):
+    if usuario == "":
+        return False
     for char in usuario:
         if not ("a" <= char <= "z" or "0" <= char <= "9"):
             return False
@@ -176,7 +178,7 @@ def cadastrar_usuario(dados):
     Cadastro de Usuário
 =========================================================================\n""")
     while True:
-        usuario = input("Escolha um nome para o seu usuário (use apenas letras minúsculas e números): ")
+        usuario = input("Escolha um nome para o seu usuário (apenas minúsculas e números): ")
         if not validar_usuario(usuario):
             print("Usuário inválido. Tente novamente.")
             continue

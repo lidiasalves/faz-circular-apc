@@ -1,32 +1,32 @@
 {
     "legenda": {
-        "vinculo":{
+        "vinculo": {
             "P": "Professor",
             "A": "Aluno",
-            "F": "Funcionário",
+            "F": "Funcion\u00c3\u00a1rio",
             "O": "Outro"
         },
-        "categoria":{
+        "categoria": {
             "PC": "Parte de Cima",
             "PB": "Parte de Baixo",
             "CI": "Corpo Inteiro",
             "MP": "Moda Praia",
             "PJ": "Pijamas",
-            "AC": "Acessórios",
+            "AC": "Acess\u00c3\u00b3rios",
             "RF": "Roupas de Frio",
             "RE": "Roupas Esportivas"
         },
-        "genero":{
+        "genero": {
             "F": "Feminino",
             "M": "Masculino",
             "A": "Ambos",
-            "S": "Sem gênero"
+            "S": "Sem g\u00c3\u00aanero"
         },
-        "estilo":{
+        "estilo": {
             "CS": "Casual",
             "ST": "Street",
-            "RM": "Romântico",
-            "CL": "Clássico",
+            "RM": "Rom\u00c3\u00a2ntico",
+            "CL": "Cl\u00c3\u00a1ssico",
             "SX": "Sexy",
             "HP": "Hippie",
             "GR": "Grunge",
@@ -34,9 +34,9 @@
             "RK": "Rock & Punk",
             "GK": "Geek"
         },
-        "faixa_etaria":{
-            "BB": "Bebê",
-            "CR": "Criança",
+        "faixa_etaria": {
+            "BB": "Beb\u00c3\u00aa",
+            "CR": "Crian\u00c3\u00a7a",
             "TN": "Adolescente",
             "AD": "Adulto"
         }
@@ -47,14 +47,14 @@
             "email_inst": "teste@unb.br",
             "telefone": "+5561987654321",
             "vinculo": "O",
-            "senha": "teste"
+            "senha": "********"
         },
         "luan": {
             "nome_usuario": "Luan Moura",
             "email_inst": "luan@unb.br",
             "telefone": "+5561987654321",
             "vinculo": "A",
-            "senha": "********"
+            "senha": "luan123"
         },
         "lidia": {
             "nome_usuario": "L\u00eddia Silveira Alves",
@@ -76,6 +76,13 @@
             "telefone": "+5561987654321",
             "vinculo": "A",
             "senha": "gabrielle123"
+        },
+        "vanessa": {
+            "nome_usuario": "Vanessa Carvalho",
+            "email_inst": "vanessa@unb.br",
+            "telefone": "+5561963852741",
+            "vinculo": "F",
+            "senha": "vanessa123"
         }
     },
     "roupas": {

@@ -13,53 +13,62 @@ Título:
 ## Tecnologias Utilizadas
 
 - **Linguagem**: Python 3
-- **Armagenamento dos dados**: JSON
-- **Bibliotecas**: random (para aleatorizar as buscas)
+- **Armazenamento dos dados**: JSON
+- **Bibliotecas**: `random` (para tornar aleatório os itens exibidos nos relatórios) e `json` (para criar, ler e editar arquivos JSON).
 - **Deploy**: GitHub
+
+## Estrutura do Projeto
+
+|Arquivos e diretórios| Finalidade
+|--|--|
+|/img/| Armazena  as imagens da documentação do projeto
+|main.py| Script principal do projeto
+|dados.json| Banco de dados em formato JSON
+|README.md| Documentação do projeto
 
 ## Como executar o Projeto Faz_Circular
 
 1. Certifique-se de ter o Phyton 3.x instalado.
 2. Clone o repositório ou baixe os arquivos.
 3. Execute o script principal: `main.py`
-4. Siga as instruções do menu principal e do menu de controle para integarir com o sistema.
+4. Siga as instruções do menu principal e do menu de controle para interagir com o sistema.
 
 ## Funcionalidades e especificações do Projeto
 
 Ao executar o script principal do Projeto Faz_Circular (`main.py`) o usuário visualizará uma mensagem de boas-vindas. 
 
-![Imagem de boas-vindas.](/img/abertura.png, "Imagem de boas-vindas")
+![Imagem de boas-vindas.](/img/abertura.png "Imagem de boas-vindas")
 
 Ao teclar "Enter" o usuário será imediatamente direcionado para o menu principal.
 
-![Imagem do menu principal.](/img/abertura.png, "Imagem do menu principal")
+![Imagem do menu principal.](/img/abertura.png "Imagem do menu principal")
 
 Dentre as funcionalidades do Menu Principal estão:
 
-1. **Conheça o nosso projeto**: o sistema exibirá um texto de apresentação do Projeto Faz_Circular ao usuário. O texto contem de forma resumida os objetivos do Projeto e quais problemas ambientais podem ser minimizados a partir da adesão ao projeto. Após a leitura o sistema redireciona o usuario ao Menu Principal.
-2.  **Faça o login**: o sistema solicitará o nome do usuário e senha previamente cadastrados. As informações dos usuários cadastrados no sistema ficam armazenados no arquivo `dados.json`. Caso o usuário não seja encontrado ou a senha esteja errada, o sistema informará o problema e redirecionará o usuário ao Menu Principal. Após a efetivação do login o usuário terá acesso ao seu Menu de Controle.
-3.  **Cadastre-se**: o sistema realizará o cadastro de novos usuários. Só é possível utilizar o sistema, caso o usuário tenha um cadastro. Os campos solicitados ao novo usuário para cadastramento são:
+1. **Conheça o nosso projeto**: o sistema exibirá um texto de apresentação do Projeto Faz_Circular ao usuário. O texto contém de forma resumida os objetivos do Projeto e quais problemas ambientais podem ser minimizados a partir da adesão ao projeto. Após a leitura o sistema redireciona o usuário ao Menu Principal.
+2.  **Faça o login**: o sistema solicitará o nome do usuário e senha previamente cadastrados. As informações dos usuários cadastrados no sistema ficam armazenadas no arquivo `dados.json`. Caso o usuário não seja encontrado ou a senha esteja errada, o sistema informará o problema e redirecionará o usuário ao Menu Principal. Após a efetivação do login o usuário terá acesso ao seu Menu de Controle.
+3.  **Cadastre-se**: o sistema realizará o cadastro de novos usuários. Só é possível utilizar o sistema, caso o usuário tenha um cadastro. Os campos solicitados para cadastramento de um novo usuário são:
     1.  **Nome do usuário**: obrigatoriamente com letras minúsculas ou números, não pode haver outros caracteres. Caso o usuário insira caracteres inválidos ou informe o nome de um usuário já existe o sistema solicitará outro nome de usuário.
-    2.  **Nome Completo**: o usuário deverá informar seu nome completo. É obrigatório imformar no mínimo duas palavras e apenas caracteres alfabéticos, caso contrário o sistema repetirá a pergunta até que seja fornecida uma resposta válida.
+    2.  **Nome Completo**: o usuário deverá informar seu nome completo. É obrigatório informar no mínimo duas palavras e apenas caracteres alfabéticos, caso contrário o sistema repetirá a pergunta até que seja fornecida uma resposta válida.
     3.  **E-mail institucional**: o usuário deverá informar o e-mail institucional. Como o Projeto é voltado a comunidade da Universidade de Brasília (UnB), só serão aceitos e-mail terminados em `@aluno.unb.br` ou `@unb.br`. Caso o usuário informe algo diferente do esperado, a pergunta será requerida novamente.
-    4.  **Telefone para contato**: o usuário deverá informar o telefone para contato. O sistema exige que o tenefone informado seja completo, isto é, começe com `+`, seguido de código do país, código da região e numero de telefone, caso contrário, a pergunta será requerida novamente.
+    4.  **Telefone para contato**: o usuário deverá informar o telefone para contato. O sistema exige que o telefone informado seja completo, isto é, comece com `+`, seguido de código do país, código da região e numero de telefone, caso contrário, a pergunta será requerida novamente.
     5.  **Tipo de vínculo com a UnB**: o usuário é obrigado a escolher entre Professor (`P`), Aluno (`A`), Funcionário (`F`) ou Outro (`O`), caso contrário, o sistema repetirá a pergunta.
-    6.  **Senha**: o usuário deve informar uma senha de acesso ao sitema.
-    7.  **Confirmação de senha**: o usuário deve confirmar a senha digitada na pergunta anterior. Caso as senhas não conincidam, o usuário retornará para a pergunta anterior `Digite um senha:`.
-    8.  **Confirmação de cadadtro**: o sistema perguntará ao usuário se ele realmente deseja concluir o cadastro. O sistema só aceita as respostas `S` (Sim) ou `N` (Não), qualquer outro cacarter é inválido e a pergunta será repetida. Se o usuário escolher `S`, as informações do novo usuário são salvas no arquivo `dados.json`. Se o usuário escolher `N`, o cadastro é cancelado e o usuário redirecionado ao Menu Principal.
+    6.  **Senha**: o usuário deve informar uma senha de acesso ao sistema.
+    7.  **Confirmação de senha**: o usuário deve confirmar a senha digitada na pergunta anterior. Caso as senhas não coincidam, o usuário retornará para a pergunta anterior `Digite um senha:`.
+    8.  **Confirmação de cadastro**: o sistema perguntará ao usuário se ele realmente deseja concluir o cadastro. O sistema só aceita as respostas `S` (Sim) ou `N` (Não), qualquer outro caractere é inválido e a pergunta será repetida. Se o usuário escolher `S`, as informações do novo usuário são salvas no arquivo `dados.json`. Se o usuário escolher `N`, o cadastro é cancelado e o usuário redirecionado ao Menu Principal.
 4.  **Recupere seu usuário ou senha**: caso o usuário não consiga lembrar qual o nome do seu usuário e/ou a senha de acesso, o sistema apresentará a seguinte mensagem na tela:
     > ATENÇÃO: Para recuperar o seu usuário ou senha entre em contato com a equipe do projeto através do e-mail faz.circular@unb.br e solicite a recuperação. Aguardaremos o seu contato.
-5.  **Sair do Sistema**: caso o usuário decida sair do sistema, será exibida uma mensagem de despedida, encerrando a execução do script `mais.py`.
+5.  **Sair do Sistema**: caso o usuário decida sair do sistema, será exibida uma mensagem de despedida, encerrando a execução do script `main.py`.
 
-![Mensagem de despedida.](/img/saida.png, "Mensagem de despedida")
+![Mensagem de despedida.](/img/saida.png "Mensagem de despedida")
 
-A partir do login do usuário o sistema habilitará o Menu de Controle do usuário disponibilizando outras funcionalidades ao usuário logado.
+A partir do login do usuário, o sistema habilitará o Menu de Controle do usuário, disponibilizando outras funcionalidades ao usuário logado.
 
-![Imagem do Menu de Controle.](/img/menu_controle.png, "Imagem do Menu de Controle")
+![Imagem do Menu de Controle.](/img/menu_controle.png "Imagem do Menu de Controle")
 
 Entre as funcionalidades do Menu de Controle estão:
 
-1. **Cadastrar roupas para doação**: o usuário logado poderá realizar o cadastro de peças de roupas para doação. Serão requeridas as seguintes informações:
+1. **Cadastrar roupas para doação**: o usuário logado poderá realizar o cadastro de peças de roupas para doação, em que serão requeridas as seguintes informações:
    1. **Qual peça será doada**: o usuário deverá indicar um texto curto de até 50 caracteres, apontando de forma muito objetiva qual é a qual que será doada. Por exemplo: saia, blusa, calça jeans, macacão, camiseta regata, camisa polo, vestido, longo estampado, etc.
    2. **Categoria da peça para doação**: o usuário deverá escolher uma das oito opções disponíveis e informar o respectivo código, caso o código seja inválido a pergunta será repetida. As categorias e códigos são: Parte de Cima (`PC`), Parte de Baixo (`PB`), Corpo Inteiro (`CI`), Moda Praia (`MP`), Pijamas (`PJ`), Acessórios (`AC`), Roupas de Frio (`RF`) e Roupas Esportivas (`RE`).
    3. **Cor predominante da peça para doação**: o usuário deverá informa uma cor predominante. Este campo só aceita letras e hífen. Logo, não é possível informar mais de uma cor. Cores com nome composto devem obrigatóriamente ser escritas com hífen entre as palavras, por exemplo: verde-escuro, azul-petróleo, etc.
@@ -72,7 +81,7 @@ Entre as funcionalidades do Menu de Controle estão:
 2. **Consultar se outro usuário reservou alguma peça que o usuário logado cadastrou para doação**: caso nenhum usuário tenha realizado reserva, aparecerá a mensagem: "Nenhuma roupa reservada.". Caso algum outro usuário tenha reservado peças que o usuário logado tenha cadastrado para doação, as peças reservadas serão exibidas na tela em formato de relatório. O relatório apresentará as seguintes informações de cada peça reservada: ID, Descrição, Categoria, Cor, Tamanho, Gênero, Estilo, Faixa etária, Conservação, Quem reservou, E-mail de quem reservou, Telefone de quem revervou. A ordem de exibição das peças é randomizada. No final do relatório informa o total de peças reservadas e a seguinte mensagem:
    > ATENÇÃO: Entre em contato com as pessoas interessadas para combinar os detalhes da doação.
 
-  ![Imagem de um relatório de reservas.](/img/reservas.png, "Imagem de um relatório de reservas")
+  ![Imagem de um relatório de reservas.](/img/reservas.png "Imagem de um relatório de reservas")
 
 3. **Gerenciar as roupas cadastradas**: ao selecionar a opção de gerenciar as roupas cadastradas, o sistema disponibilizará seis opções de gestão ao usuário logado:
    1. **Consultar roupas reservadas**: trata-se de um outro caminho para a mesma funcionalidade da opção `2` do Menu de Controle, isto é, consultar se outro usuário reservou alguma peça que o usuário logado cadastrou para doação.
@@ -83,12 +92,20 @@ Entre as funcionalidades do Menu de Controle estão:
    6. **Cancelar operação**: o usuário logado é redirecinado para o Menu de Controle.
 4. **Procurar roupas que estejam em doação**: o sistema emitirá um relatório com todas as peças disponíveis para doação, isto é, peças que não foram cadastradas pelo usuário logado e que não estejam reservadas por outros usuários. A ordem de exibição das peças cadastradas é randômica. Antes de exibir o relatório, o sistema perguntará ao usuário logado se ele deseja aplicar algum filtro, sendo possível responder apenas `S` (Sim) ou `N` (Não). Caso o usário responda outra opção, a pergunta é repetida; caso o usuário responda `N`, todas as peças disponíveis para reserva serão exibidas; caso o usuário responda `S`, uma pergunta de `S` (Sim) ou `N` (Não) será requerida para cada especificação da peça (categoria, cor, tamanho, gênero, estilo, faixa etária) e para cada `S` respondido, será necessário especificar o fíltro conforme orientação do sistema. O final do relatório indica quantas roupas foram localizadas.
 5. **Reservar roupas que estejam em doação**: o sistema reservará uma peça cadastrada para o usuário logado. Não é possível reservar roupas cadastradas pelo próprio usuário logado ou roupas que ja estajam reservadas por outra pessoa. Para fazer uma reserva, o sistema solicitará o ID da peça. Caso o ID não exista ou a peça esteja indisponível para reserva, a operação é cancelada e o usuário logado será redirecionado ao Menu de Controle. Caso a peça esteja disponível, um resumo da peça contendo ID, descrição, categoria, cor, tamanho, gênero, estilo, faixa etária e conservação serão exibidos na tela, seguido de uma pergunta de confirmação da reserva. A confirmação só aceita as respostas `S` (Sim) ou `N` (Não). Caso o usuário informe algo diferente, a pergunta será repetida. Caso o usuário escolha a opção `N`, a reserva é cancelada e o usuário e redirecionado ao Menu de Controle. Caso o usuário escolha `S`, a reserva será salva no arquivo `dados.json` e o sistema mostrará na tela o contato de quem cadastrou a peça para que o interessado entre em contato. 
-6. **Editar o cadastro**: o sistema abre o cadastro do usuário logado para que ele realiza atualizações cadastrais. Antes de iniciar a edição, o sistema pergunta se o usuário logado realmente deseja inicia a edição, sendo possível apenas as respostas `S` (Sim) ou `N` (Não). Caso o usuário digite algo diferente, a pergunta é repetida. Caso o usuário informe `N`, a operação é cancelada e o usuário redirecionado ao Menu de Controle. Caso a resposta seja `S`, a edição é iniciada.
+6. **Editar o cadastro**: o sistema abre o cadastro do usuário logado para que ele realiza atualizações cadastrais. Antes de iniciar a edição, o sistema pergunta se o usuário logado realmente deseja inicia a edição, sendo possível apenas as respostas `S` (Sim) ou `N` (Não). Caso o usuário digite algo diferente, a pergunta é repetida. Caso o usuário informe `N`, a operação é cancelada e o usuário redirecionado ao Menu de Controle. Caso a resposta seja `S`, a edição é iniciada. A edição do cadastro de usuário permite alterar o nome completo do usuário, o e-mail institucional, o telefone para contato e o tipo de vínculo com a Universidade de Brasília. Não é possível alterar o nome de login do usuário. Para cada campo editado, as regras de validação são as mesmas aplicadas para o cadastro de usuário. Após a atualização cadastracal o usuário logado é redirecionado para o Menu de Controle.
+7. **Sair do sistema**: o usuário logado sair do sistema. É exibida uma mensagem de despedida, encerrando a execução do script `main.py`.
 
-## Contribuição
+## Contribuições
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests para melhorias e novas funcionalidades.
 
+## Contatos
 
+Caso tenha dúvidas ou precise de suporte, entre em contato com a equipe do projeto:
 
-
+|Membros|E-mail|
+|--|--|
+|Francisco Júnior|242027442@aluno.unb.br|
+|Gabrielle Santos|242027451@aluno.unb.br|
+|Lídia Alves|242027489@aluno.unb.br|
+|Luan Moura|242012154@aluno.unb.br|

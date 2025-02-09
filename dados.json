@@ -83,22 +83,16 @@
             "telefone": "+5561963852741",
             "vinculo": "F",
             "senha": "vanessa123"
+        },
+        "gabriel": {
+            "nome_usuario": "Gabriel Santos",
+            "email_inst": "gabriel@aluno.unb.br",
+            "telefone": "+5561963852741",
+            "vinculo": "A",
+            "senha": "gabriel123"
         }
     },
     "roupas": {
-        "1": {
-            "id": 1,
-            "descricao": "camiseta regata",
-            "categoria": "PC",
-            "cor": "branca",
-            "tamanho": "M",
-            "genero": "M",
-            "estilo": "CS",
-            "faixa_etaria": "AD",
-            "conservacao": "levemente amarelada",
-            "doador": "teste",
-            "reserva": "luan"
-        },
         "2": {
             "id": 2,
             "descricao": "sunga",
@@ -110,7 +104,7 @@
             "faixa_etaria": "AD",
             "conservacao": "nova, ganhei e nunca usei.",
             "doador": "teste",
-            "reserva": "luan"
+            "reserva": ""
         },
         "3": {
             "id": 3,
